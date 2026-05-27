@@ -108,3 +108,28 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Stagger-fade-in for the post-search results cards. Each card gets a
+   per-item animationDelay set inline so they cascade in. */
+@keyframes resultsCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.results-card-enter {
+  opacity: 0;
+  animation: resultsCardIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Respect users who prefer reduced motion — drop the slide, keep the fade. */
+@media (prefers-reduced-motion: reduce) {
+  .results-card-enter {
+    animation-duration: 0.01s;
+    transform: none;
+  }
+}
